@@ -55,16 +55,16 @@ public class Show extends HttpServlet {
             String query = "SELECT * FROM user";
 
             ResultSet rs = st.executeQuery(query);
+            
             while (rs.next()) {
-
                 JSONObject employeeToAdd = new JSONObject();
                 employeeToAdd.put("email", rs.getString("email"));
                 employeeToAdd.put("name", rs.getString("name"));
-                System.out.println(rs.getString("name"));
-                employeeToAdd.put("password", rs.getString("password"));
+                //System.out.println(rs.getString("name"));
                 jsonArray.add(employeeToAdd);
             }
-                System.out.println(jsonArray);
+            System.out.println(jsonArray.size());
+                //System.out.println(jsonArray);
             //set the content type of our response
             response.setContentType("application/json");
             //printout prints it to our ajax call and it shows up there as data. you can use this data in the success function.
