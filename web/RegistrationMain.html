@@ -8,6 +8,22 @@
   <link href="css/mainStyles.css" rel="stylesheet" type="text/css">
   
   
+   <script language="javascript" type="text/javascript">
+            // <!CDATA[
+            function loginButton() 
+            {
+                alert("bruh");
+    $.ajax({
+        url: '/TeamRocket/Hello',
+        type: 'GET',
+        dataType: 'text',
+        data: {name : $("#name").val(), email: $("#email").val(), password: $("#password").val()},
+        success: function (data)
+        {
+           $("#testH").html(data);
+        }
+    });
+}</script>
   </head>
   <body>
   <div class="wrapper">
@@ -34,7 +50,7 @@
                                         <p><span style = "font-size: 16pt"> <strong> <font color = "red" > * </font> First Name: </strong>
                                           <br/> 
                                         </span> 
-                                          <input name = "First_Name"  style = "font-weight: bold; font-size:16pt; width:" type = "text" /> 
+                                          <input id="name" name = "First_Name"  style = "font-weight: bold; font-size:16pt; width:" type = "text" /> 
                                           <br/>
                                           <span style = "font-size: 16pt"> 
                                             <strong > <font color = "red" > * </font > Last Name:
@@ -48,7 +64,7 @@
                                             <font color = "red">*</font> Password:<br/> 
                                             </strong> 
                                           </span> 
-                                          <input name = "Password1"  style = "font-weight: bold; font-size: 16pt;width:" type = "password"/> 
+                                          <input id="password" name = "Password1"  style = "font-weight: bold; font-size: 16pt;width:" type = "password"/> 
                                           <span style = "font-size: 16pt"> 
                                           </span> <br/> 
                                           <span style = "font-size: 16pt"> <strong> <font color = "red"> * </font> Re enter password:<br/> 
@@ -59,7 +75,7 @@
                                           <span style = "font-size: 16pt" > <strong > <font color = "red" > * </font > E-mail Address:
                                             <br/> 
                                             </strong> </span> 
-                                          <input name = "E-mail Address"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
+                                          <input id="email" name = "E-mail Address"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
                                           <br/> 
                                           <span style = "font-size: 16pt" > <strong > <font color = "red" > * </font > School Name:
                                             <br/> 
@@ -71,7 +87,7 @@
                                       </p>
                                         <p>
                                           <br/> 
-                                          <input id = "continueButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Continue"  onclick = "" />
+                                          <input id = "continueButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Continue"  onclick = "loginButton()" />
                                           &nbsp;
                                           <input  id = "cancelButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Cancel"  onclick = "" /> 
                                           <br/> 
