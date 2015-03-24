@@ -34,15 +34,11 @@
         dataType: 'JSON',
         
         success: function (data)
-        {
+        {   $("#studentListDiv").toggle("fast");
+            $("#studentList").html("");
         for (var i = 0; i < data.length; i++)
         {
-                    
-                    $("#userRows").append("<tr id=" + data[i].email + "></tr>");
-                    $("#" + data[i].email).append("<td value='name'>" + data[i].name + "</td>");
-                    
-                    $("#" + data[i].email).append("<td >--------------------------</td>");
-                    $("#" + data[i].email).append("<td value='email'>" + data[i].email + "</td>");
+                    $("#studentList").append("<p>Name: "+data[i].name + "    ------------------------    Email:"+data[i].email + "</p>");
                    
                 }
         }
@@ -50,24 +46,7 @@
 }</script>
   </head>
   <body>
-      <div style="float:left; width:100%; min-height: 200px">
-                <table >
-                    <thead>
-                        <tr><h3>Employee</h3></tr>
-                        <th>Name</th>
-                         <th>++++</th>
-                        <th>Email</th>
-                            
-                    
-
-                    </thead>
-                    <tbody id="userRows">
-
-                    </tbody>
-
-                </table>
-
-            </div>
+      
       
   <div class="wrapper">
       <header>
@@ -140,11 +119,15 @@
                       
  
           </section>
-         
+         <div id="studentListDiv" style="display: none" >
+          <h3>Student List</h3>
+                    <div id="studentList" style="float:left; width:100%; min-height: 200px"></div>
+
+            </div>
           <section>
               <article class="post">
                   <a href=""><h1>Type and scrambled it to make a type</h1><img src="images/pic1.jpg" alt=""></a>
-                  <p class="smallPost">
+                  <p class="smallPost" id = "testH">
                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
                   </p>
                   <p class="date"><span>Jun 30, 2015</span> 
