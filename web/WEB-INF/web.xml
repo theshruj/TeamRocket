@@ -2,11 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Hello</servlet-name>
-         <servlet-class>Hello</servlet-class>
+        <servlet-class>Hello</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Show</servlet-name>
+        <servlet-class>Show</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Show</servlet-name>
+        <url-pattern>/Show</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

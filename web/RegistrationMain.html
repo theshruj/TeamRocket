@@ -23,9 +23,52 @@
            $("#testH").html(data);
         }
     });
+    }</script>   
+   <script language="javascript" type="text/javascript">
+
+                function showButton() 
+            {
+    $.ajax({
+        url: '/TeamRocket/Show',
+        type: 'GET',
+        dataType: 'JSON',
+        
+        success: function (data)
+        {
+        for (var i = 0; i < data.length; i++)
+        {
+                    
+                    $("#userRows").append("<tr id=" + data[i].email + "></tr>");
+                    $("#" + data[i].email).append("<td value='name'>" + data[i].name + "</td>");
+                    
+                    $("#" + data[i].email).append("<td >--------------------------</td>");
+                    $("#" + data[i].email).append("<td value='email'>" + data[i].email + "</td>");
+                   
+                }
+        }
+    });
 }</script>
   </head>
   <body>
+      <div style="float:left; width:100%; min-height: 200px">
+                <table >
+                    <thead>
+                        <tr><h3>Employee</h3></tr>
+                        <th>Name</th>
+                         <th>++++</th>
+                        <th>Email</th>
+                            
+                    
+
+                    </thead>
+                    <tbody id="userRows">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+      
   <div class="wrapper">
       <header>
           <div class="logo">
@@ -89,7 +132,7 @@
                                           <br/> 
                                           <input id = "continueButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Continue"  onclick = "loginButton()" />
                                           &nbsp;
-                                          <input  id = "cancelButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Cancel"  onclick = "" /> 
+                                          <input  id = "cancelButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Show Users"  onclick = "showButton()" /> 
                                           <br/> 
                                           <span style = "font-size: 8pt; font-family: Calibri"> <br/> <br/> 
                               </span></p>       
@@ -151,6 +194,7 @@
           </section>
       </div>
       <div class="clearfloat"></div>
+      
       <footer>
           <p>
           Copyright &copy; Rocket System. All rights reserved. </p>
