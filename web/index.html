@@ -12,21 +12,20 @@
             // <!CDATA[
             function loginButton_onclick()
             {
-                
-                if ($("#username").html() === "" || $("#password").html() === "") {
+          
 
-                } else {
                     $.ajax({
-                        url: '/TeamRocket/Hello',
+                        url: '/TeamRocket/Login',
                         type: 'GET',
                         dataType: 'text',
-                        data: {name : $("#name").val(), email: $("#email").val(), password: $("#password").val()},
+                        data: {name : $("#username").val(), password: $("#password").val()},
                         success: function (data)
                         {
-                            $("#testH").html(data);
+                            $("#showUser").toggle("fast");
+                            $("#showUser").html(data);
                         }
                     });
-                }
+                
             }
 
             function registerButton_onclick() {
@@ -34,8 +33,8 @@
             }
             // ]]>
         </script>
-
     </head>
+
     <body>
         <div class="wrapper">
             <header>
@@ -44,13 +43,16 @@
                 <nav>
                     <ul id="navlist">
                         <li id="active"><a href="#">Home</a></li>
-                        <li><a href="adminPage.html">Admin</a></li>
+                        <li><a href="Admin.html">Admin</a></li>
                     </ul>
                 </nav>
                 <div class="clearfloat"></div>
             </header>
+                         
+
             <div class="bodyContainer">
                 <section>
+                    <div id="showUser" style="display: none" >GRA</div>
                     <div><img src="images/headerPic.jpg" alt=""></div>
                     <br />
                     <form name="loginForm" action="login.jsp" method="post">
@@ -67,63 +69,21 @@
 
                 </section>
 
-                <section>
-                    <article class="post">
-                        <a href=""><h1 id = "testH">Type and scrambled it to make a type</h1><img src="images/pic1.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span> 
-                    </article>
-                    <article class="post">
-                        <a href=""><h1>Lorem Ipsum has been the industry's</h1><img src="images/pic2.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span>
-                    </article>
-                    <article class="lastPost">
-                        <a href=""><h1>The industry's standard dummy text</h1><img src="images/pic3.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span>
-                    </article>
-                    <div class="clearfloat"></div>
-                    <article class="post">
-                        <a href="">
-                            <h1>With the release of Letraset sheets rocket system</h1><img src="images/pic4.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span> 
-                    </article>
-                    <article class="post">
-                        <a href=""><h1>Desktop publishing software like</h1><img src="images/pic5.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span> 
-                    </article>
-                    <article class="lastPost">
-                        <a href=""><h1>It has survived not only five centuries, but</h1><img src="images/pic6.jpg" alt=""></a>
-                        <p class="smallPost">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
-                        </p>
-                        <p class="date"><span>Jun 30, 2015</span> 
-                    </article>
-                </section>
+                
                 <section>
                     <h2>About</h2>
                     <p>Rocket System is...</p>
-
+                    
                 </section>
             </div>
             <div class="clearfloat"></div>
+            
             <footer>
                 <p>
                     Copyright &copy; Rocket System. All rights reserved. </p>
+                
             </footer>
+            
         </div>
     </body>
 </html>

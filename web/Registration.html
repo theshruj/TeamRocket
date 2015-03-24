@@ -19,7 +19,7 @@
         dataType: 'text',
         data: {name : $("#name").val(), email: $("#email").val(), password: $("#password").val()},
         success: function (data)
-        {
+        {alert();
            $("#testH").html(data);
         }
     });

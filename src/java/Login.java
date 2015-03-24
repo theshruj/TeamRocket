@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author spari_000
  */
+@WebServlet("/Login")
 
-@WebServlet("/Hello")  
-
-public class Hello extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,45 +36,48 @@ public class Hello extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        
-             
- 
-        String email= request.getParameter("email");
-       
-         String name = request.getParameter("name");
-              
-         String password= request.getParameter("password");
-    for(int i = 0; i< 10; i++)
-            System.out.println(email+name+password);
-    
-             try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-             try
-        {
-            System.out.println(email+"--");
 
-            Class.forName("com.mysql.jdbc.Driver");
-            java.util.Properties sysprops = System.getProperties();
+        String name = request.getParameter("name");
+
+        String password = request.getParameter("password");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(name + name + password);
+        }
+
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            try {
+
+                Class.forName("com.mysql.jdbc.Driver");
+                java.util.Properties sysprops = System.getProperties();
                 sysprops.put("user", "root");
                 sysprops.put("password", "pass");
                 //connect to the database
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
-            Statement st = con.createStatement();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
+                Statement st = con.createStatement();
 
-            String query = "INSERT INTO user  " + "VALUES('" + email + "','" + name + "','" + password + "'," + "'s')";
-            System.out.println(query);
-            
-            st.executeUpdate(query);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-        }     
-                 
-                 
-            out.println("The user is "+name+" \nThere is a world of ajax out here");
+                String query = "SELECT * FROM  user  WHERE name = \"" + name + "\" ;";
+                System.out.println(query);
+                ResultSet rs = st.executeQuery(query);
+
+                if (rs.next()) {
+                    System.out.println("The user is " + rs.getString("name") + " \nIs in the database");
+                    if (rs.getString("password").equals(password)) {
+                        out.println("Welcome User "+name );
+                    } else {
+                        out.println("Invalid Login, password");
+                    }
+                } else {
+                    System.out.println("The user is " + name + " \nIs in the database");
+
+                    out.println("Invalid Login, name");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("error");
+            }
+
         }
     }
 
