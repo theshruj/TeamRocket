@@ -6,7 +6,23 @@
   <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
   <link href="css/mainStyles.css" rel="stylesheet" type="text/css">
-  
+  <script language="javascript" type="text/javascript"> 
+      function continueButton_onclick() 
+      { if (document.registrationForm.First_Name.value == "") 
+          { alert("Name is a required field."); } 
+          else if (document.registrationForm.Last_Name.value == "")
+          { alert("Last Name is a required field."); }
+          else if (document.registrationForm.Password1.value == "") 
+          { alert("Password cannot be empty."); } 
+          else if (document.registrationForm.Password1.value != document.registrationForm.Password2.value) 
+          { alert("Passwords do not match."); } 
+          else if (document.registrationForm.Email.value == "") 
+          { alert("Email is a required field."); }
+          else if (document.registrationForm.School.value == "")
+          { alert("School is a required field."); }
+          else { javascript:document.registrationForm.submit(); }
+       } 
+    </script>
   
   </head>
   <body>
@@ -59,19 +75,19 @@
                                           <span style = "font-size: 16pt" > <strong > <font color = "red" > * </font > E-mail Address:
                                             <br/> 
                                             </strong> </span> 
-                                          <input name = "E-mail Address"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
+                                          <input name = "Email"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
                                           <br/> 
                                           <span style = "font-size: 16pt" > <strong > <font color = "red" > * </font > School Name:
                                             <br/> 
                                             </strong> </span> 
-                                          <input name = "School Name"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
+                                          <input name = "School"  style = "font-weight: bold; font-size: 16pt;width:" type = "text" /> 
                                           <br/> 
                                       <!--      <input type="radio"  name="accType" value="Student">Student   >
                                             <input type="radio"  style = "font-weight: bold; font-size: 16pt;width:" name="accType" value="Administrator">Administrator<br> -->
                                       </p>
                                         <p>
                                           <br/> 
-                                          <input id = "continueButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Continue"  onclick = "" />
+                                          <input id = "continueButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Continue"  onclick = continueButton_onclick() />
                                           &nbsp;
                                           <input  id = "cancelButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Cancel"  onclick = "" /> 
                                           <br/> 
