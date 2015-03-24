@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author spari_000
  */
 
-@WebServlet("/Hello")  
+@WebServlet("/Register")  
 
-public class Hello extends HttpServlet {
+public class Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
