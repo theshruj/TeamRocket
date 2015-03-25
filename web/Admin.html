@@ -12,6 +12,13 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
         <link href="css/styles.css" rel="stylesheet" type="text/css">
+
+        <script language="javascript" type="text/javascript">
+            function addSchoolButton_onclick() {
+                window.open("AddSchool.html", "_self");
+            }
+        </script>
+
     </head>
     <body>
         <div class="wrapper">
@@ -61,7 +68,7 @@ Released for free under a Creative Commons Attribution 3.0 Unported License (CC 
 
                         section 2<br>
 
-                        <input id = "addSchoolButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Add School"  onclick = "" />
+                        <input id = "addSchoolButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Add School"  onclick = "addSchoolButton_onclick()" />
                         &nbsp;
                         <input  id = "deleteStudentAccountButton" style = "font-weight: bold; font-size: 16pt;width:" type = "button" value = "Delete School"  onclick = "" /> 
                     </div>  
