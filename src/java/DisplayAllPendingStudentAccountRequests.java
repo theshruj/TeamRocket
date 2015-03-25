@@ -16,8 +16,8 @@ import org.json.simple.JSONObject;
  *
  * @author spari_000
  */
-@WebServlet("/Show")
-public class Show extends HttpServlet {
+@WebServlet("/DisplayAllpendingStudentAccountRequests")
+public class DisplayAllPendingStudentAccountRequests extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,13 +40,13 @@ public class Show extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             java.util.Properties sysprops = System.getProperties();
             sysprops.put("user", "root");
-            sysprops.put("password", "pass");
+            sysprops.put("password", "sunny");
             //connect to the database
 
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
             Statement st = con.createStatement();
 
-            String query = "SELECT * FROM user";
+            String query = "SELECT name,student.email FROM user,student WHERE user.email = student.email AND student.approved = 'n'";
 
             ResultSet rs = st.executeQuery(query);
             

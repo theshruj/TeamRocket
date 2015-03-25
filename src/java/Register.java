@@ -37,14 +37,9 @@ public class Register extends HttpServlet {
         response.setContentType("text/html");
 
         String email = request.getParameter("email");
-
         String name = request.getParameter("name");
-
         String password = request.getParameter("password");
-        for (int i = 0; i < 10; i++) {
-            System.out.println(email + name + password);
-        }
-
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             try {
@@ -53,7 +48,7 @@ public class Register extends HttpServlet {
                 Class.forName("com.mysql.jdbc.Driver");
                 java.util.Properties sysprops = System.getProperties();
                 sysprops.put("user", "root");
-                sysprops.put("password", "pass");
+                sysprops.put("password", "sunny");
                 //connect to the database
 
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
@@ -61,7 +56,10 @@ public class Register extends HttpServlet {
 
                 String query = "INSERT INTO user  " + "VALUES('" + email + "','" + name + "','" + password + "'," + "'s')";
                 System.out.println(query);
-
+                st.executeUpdate(query);
+                
+                query = "INSERT INTO student  " + "VALUES('" + email + "','" + "n')";
+                System.out.println(query);
                 st.executeUpdate(query);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

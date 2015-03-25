@@ -12,9 +12,7 @@
             // <!CDATA[
             function loginButton_onclick()
             {
-          
-
-                    $.ajax({
+                $.ajax({
                         url: '/TeamRocket/Login',
                         type: 'GET',
                         dataType: 'text',
@@ -29,7 +27,7 @@
             }
 
             function registerButton_onclick() {
-                window.open("RegistrationMain.html", "_self");
+                window.open("Registration.html", "_self");
             }
             // ]]>
         </script>
@@ -55,7 +53,7 @@
                     <div id="showUser" style="display: none" >GRA</div>
                     <div><img src="images/headerPic.jpg" alt=""></div>
                     <br />
-                    <form name="loginForm" action="login.jsp" method="post">
+                    <form name="loginForm" action="/TeamRocket/login" method="post">
                         <span style="font-size: 16pt">User ID :</span>
                         <input id="username" name="username" type="text" />
                         &nbsp; <span style="font-size: 16pt">Password:</span>
