@@ -6,12 +6,6 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +17,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author spari_000
  */
-@WebServlet("/Login")
+@WebServlet("/tester")
 
-public class Login extends HttpServlet {
+public class tester extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,57 +33,13 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        for (int i = 0; i < 10; i++) {
-            System.out.println(email + "  " + password);
-        }
-
+        HttpSession hh =request.getSession();
+        String name = (String )hh.getAttribute("user");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            try {
-
-                Class.forName("com.mysql.jdbc.Driver");
-                java.util.Properties sysprops = System.getProperties();
-                sysprops.put("user", "root");
-                sysprops.put("password", "pass");
-                //connect to the database
-
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
-                Statement st = con.createStatement();
-
-                String query = "SELECT * FROM  user  WHERE email = \"" + email + "\" ;";
-                System.out.println(query);
-                ResultSet rs = st.executeQuery(query);
-                String url;
-                String name;
-                if (rs.next()) {
-                    System.out.println("The user is " + rs.getString("name") + " \nIs in the database");
-                    if (rs.getString("password").equals(password)) {
-                        name = rs.getString("name");
-
-                        url = "/Student.html";
-                        HttpSession hg = request.getSession();
-                        hg.setAttribute("user", name);
-                        
-                        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-                        dispatcher.forward(request, response);
-
-                    } else {
-                        out.println("Invalid Password");
-                    }
-                } else {
-                    System.out.println("The user is not in the database");
-
-                    out.println("Invalid Email");
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.out.println("error");
-            }
-
+            out.println(name);
+            System.out.println(name);
+     
         }
     }
 

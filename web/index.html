@@ -9,18 +9,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
         <script language="javascript" type="text/javascript">
-            function loginButton_onclick()
-            {
-                    $.ajax({
-                        url: '/TeamRocket/Login',
-                        type: 'GET',
-                        dataType: 'text',
-                        data: {email : $("#email").val(), password: $("#password").val()},
-                        success: function () {}
-                                });
-            }
-
-            function registerButton_onclick() {
+                        function registerButton_onclick() {
                 window.open("Registration.html", "_self");
             }
         </script>
