@@ -9,29 +9,20 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
         <script language="javascript" type="text/javascript">
-            // <!CDATA[
             function loginButton_onclick()
             {
-          
-
                     $.ajax({
                         url: '/TeamRocket/Login',
                         type: 'GET',
                         dataType: 'text',
-                        data: {name : $("#username").val(), password: $("#password").val()},
-                        success: function (data)
-                        {
-                            $("#showUser").toggle("fast");
-                            $("#showUser").html(data);
-                        }
-                    });
-                
+                        data: {email : $("#email").val(), password: $("#password").val()},
+                        success: function () {}
+                                });
             }
 
             function registerButton_onclick() {
-                window.open("RegistrationMain.html", "_self");
+                window.open("Registration.html", "_self");
             }
-            // ]]>
         </script>
     </head>
 
@@ -52,16 +43,16 @@
 
             <div class="bodyContainer">
                 <section>
-                    <div id="showUser" style="display: none" >GRA</div>
+                    <div id="showUser" style="display: none" ></div>
                     <div><img src="images/headerPic.jpg" alt=""></div>
                     <br />
-                    <form name="loginForm" action="login.jsp" method="post">
-                        <span style="font-size: 16pt">User ID :</span>
-                        <input id="username" name="username" type="text" />
-                        &nbsp; <span style="font-size: 16pt">Password:</span>
-                        <input id="password" name="userpasswd" type="password" />
+                    <form name="loginForm" action="/TeamRocket/Login" method="post">
+                        <span style="font-size: 16pt">Email: </span>
+                        <input id="email" name="email" type="text" />
+                        &nbsp; <span style="font-size: 16pt">Password: </span>
+                        <input id="password" name="password" type="password" />
                         &nbsp;
-                        <input id="loginButton" style="width: 70px" type="button" value="Log In" onclick="return loginButton_onclick()" />
+                        <input id="loginButton" style="width: 70px" type="submit" value="Log In" />
                         &nbsp;
                         <input id="registerButton" style="width: 70px" type="button" value="Register" onclick="return registerButton_onclick()" />
                         <br />
