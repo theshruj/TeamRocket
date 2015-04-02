@@ -24,6 +24,10 @@
         <servlet-name>ApprovePendingStudentAccountRequests</servlet-name>
         <servlet-class>ApprovePendingStudentAccountRequests</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchFriends</servlet-name>
+        <servlet-class>SearchFriends</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ApprovePendingStudentAccountRequests</servlet-name>
         <url-pattern>/ApprovePendingStudentAccountRequests</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFriends</servlet-name>
+        <url-pattern>/SearchFriends</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

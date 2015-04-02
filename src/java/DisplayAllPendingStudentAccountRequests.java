@@ -57,8 +57,7 @@ public class DisplayAllPendingStudentAccountRequests extends HttpServlet {
                 //System.out.println(rs.getString("name"));
                 jsonArray.add(employeeToAdd);
             }
-            System.out.println(jsonArray.size());
-                //System.out.println(jsonArray);
+           //System.out.println(jsonArray);
             //set the content type of our response
             response.setContentType("application/json");
             //printout prints it to our ajax call and it shows up there as data. you can use this data in the success function.

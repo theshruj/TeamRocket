@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -37,39 +31,38 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
 
-        String name = request.getParameter("name");
+        String email = request.getParameter("email");
 
         String password = request.getParameter("password");
         for (int i = 0; i < 10; i++) {
-            System.out.println(name + name + password);
+            System.out.println(email + password);
         }
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             try {
 
                 Class.forName("com.mysql.jdbc.Driver");
                 java.util.Properties sysprops = System.getProperties();
                 sysprops.put("user", "root");
-                sysprops.put("password", "pass");
+                sysprops.put("password", "sunny");
                 //connect to the database
 
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
                 Statement st = con.createStatement();
 
-                String query = "SELECT * FROM  user  WHERE name = \"" + name + "\" ;";
+                String query = "SELECT * FROM  user  WHERE email = \"" + email + "\" ;";
                 System.out.println(query);
                 ResultSet rs = st.executeQuery(query);
 
                 if (rs.next()) {
                     System.out.println("The user is " + rs.getString("name") + " \nIs in the database");
                     if (rs.getString("password").equals(password)) {
-                        out.println("Welcome User "+name );
+                        out.println("Welcome User "+ rs.getString("name"));
                     } else {
                         out.println("Invalid Login, password");
                     }
                 } else {
-                    System.out.println("The user is " + name + " \nIs in the database");
+                    System.out.println("The user is " + email + " \nIs in the database");
 
                     out.println("Invalid Login, name");
                 }

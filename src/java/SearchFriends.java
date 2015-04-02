@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Enumeration;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +14,9 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * @author rhododendron
+ * @author Rhododendron
  */
-@WebServlet("/ApprovePendingStudentAccountRequests")
-public class ApprovePendingStudentAccountRequests extends HttpServlet {
+public class SearchFriends extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,52 +30,44 @@ public class ApprovePendingStudentAccountRequests extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        Enumeration pendingAccounts = request.getParameterNames();
-        String[] emails = request.getParameterValues("emails");
+        String name = request.getParameter("name");
         JSONArray jsonArray = new JSONArray();
 
-        for(int i = 0; i < emails.length; i++){
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                try {
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
 
-                    Class.forName("com.mysql.jdbc.Driver");
-                    java.util.Properties sysprops = System.getProperties();
-                    sysprops.put("user", "root");
-                    sysprops.put("password", "sunny");
-                    //connect to the database
+            Class.forName("com.mysql.jdbc.Driver");
+            java.util.Properties sysprops = System.getProperties();
+            sysprops.put("user", "root");
+            sysprops.put("password", "sunny");
+            //connect to the database
 
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
-                    Statement st = con.createStatement();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3310/school", sysprops);
+            Statement st = con.createStatement();
 
-                    String query = "SELECT name,student.email FROM user,student "
-                            + "WHERE user.email = student.email AND student.approved = 'n'"
-                            + "AND student.email = '" + emails[i] + "'";
-
-                    ResultSet rs = st.executeQuery(query);
-
-                    while (rs.next()) {
-                        JSONObject employeeToAdd = new JSONObject();
-                        employeeToAdd.put("email", rs.getString("email"));
-                        employeeToAdd.put("name", rs.getString("name"));
-                        //System.out.println(rs.getString("name"));
-                        jsonArray.add(employeeToAdd);
-                    }
-
-                    String updateQ = "UPDATE student "
-                            + "SET approved = 'y' "
-                            + "WHERE student.approved = 'n' AND student.email = '" + emails[i] + "'";
-
-                    st.executeUpdate(updateQ);
-                    out.println("The user is " + emails[i] + " \nThere is a world of ajax out here");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("error");
-                }
+            String query = "SELECT user.name FROM user,student WHERE user.email = student.email AND user.name = '" + name + "'";
+            // AND student.approved='y'
+            
+            ResultSet rs = st.executeQuery(query);
+            
+            while (rs.next()) {
+                JSONObject employeeToAdd = new JSONObject();
+                employeeToAdd.put("name", rs.getString("name"));
+                jsonArray.add(employeeToAdd);
             }
-        }
-    }
+            System.out.println(jsonArray);
+            //set the content type of our response
+            response.setContentType("application/json");
+            //printout prints it to our ajax call and it shows up there as data. you can use this data in the success function.
 
+            out.print(jsonArray);
+            out.flush();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("error");
+        }
+
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
